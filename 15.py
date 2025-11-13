@@ -1,6 +1,6 @@
 import random
 
-#азмер поля
+#размер поля
 SIZE = 4
 
 def create_board():
