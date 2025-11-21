@@ -1,9 +1,9 @@
 import random
 
-size = 4
+size = 4 #размер поля
 
-def new_board():
-    nums = list(range(1, size * size))
+def new_board(): #создание поля
+    nums = list(range(1, size * size)) 
     nums.append(0)
     while True:
         random.shuffle(nums)
@@ -11,7 +11,7 @@ def new_board():
         if if_solvable(nums):
             return board
 
-def if_solvable(nums):
+def if_solvable(nums): #проверка на решаемость
     inv_count = 0
     for i in range(len(nums)):
         for d in range(i + 1, len(nums)):
@@ -21,20 +21,20 @@ def if_solvable(nums):
     empty = size - (nums.index(0) // size)
     return (empty % 2 == 0) == (inv_count % 2 == 1)
 
-def print_board(board):
+def print_board(board): #вывод поля
     for row in board:
         for num in row:
             print(f"{num:2}" if num != 0 else "  ", end = "  ")
         print()
     print()
 
-def empty_pos(board):
+def empty_pos(board): #поиск координат пустой плитки
     for i in range(size):
         for d in range(size):
             if board[i][d] == 0:
                 return i, d
 
-def empty_move(board, direction):
+def empty_move(board, direction): #передвижение пустой плитки
     x, y = empty_pos(board)
 
     if direction == "up" and x > 0:
@@ -48,7 +48,7 @@ def empty_move(board, direction):
     else:
         print("Неверный ход")
 
-def if_solved(board):
+def if_solved(board): #проверка упорядоченности поля
     nums = [board[i][d] for i in range(size) for d in range(size)]
     return nums == list(range(1, size * size)) + [0]
 
